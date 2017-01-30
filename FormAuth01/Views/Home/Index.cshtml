@@ -9,8 +9,12 @@
 {
     <div>@User.Identity.Name</div>
     <div>@Html.ActionLink("退出", "LogOff")</div>
-}else{
+}
+else
+{
     <div>
         @Html.ActionLink("登录", "LogOn")
     </div>
 }
+
+<div>@Html.ActionLink("信息界面", "info")</div>
