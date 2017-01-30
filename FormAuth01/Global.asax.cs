@@ -5,6 +5,7 @@ using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using System.Web.Security;
 
 namespace FormAuth01
 {
@@ -27,6 +28,8 @@ namespace FormAuth01
             {
                 var identity = Context.User.Identity;
                 string[] roles = new string[] { "admin" };
+                //string userDate = ((FormsIdentity)identity).Ticket.UserData;
+                //roles = userDate.Split(',');
                 Context.User = new GenericPrincipal(identity, roles);
             }
         }

@@ -20,8 +20,21 @@ namespace FormAuth01.Controllers
             //验证登录是否成功
             //如果成功，则
             var account = "admin";
-            FormsAuthentication.SetAuthCookie(account, false);
+            SetAuthCookie(account, "admin,teacher");
             return RedirectToAction("Index");
+        }
+
+        private void SetAuthCookie(string account, string userData)
+        {
+            //FormsAuthentication.SetAuthCookie(account, false);
+
+            FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(
+                1, account, DateTime.Now,
+                DateTime.Now.Add(FormsAuthentication.Timeout),
+                false, userData);
+
+            HttpCookie cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(ticket));
+            HttpContext.Response.Cookies.Add(cookie);
         }
 
         public ActionResult LogOff()
