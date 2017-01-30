@@ -5,3 +5,12 @@
 
 <h2>这里是首页</h2>
 
+@if (Request.IsAuthenticated)
+{
+    <div>@User.Identity.Name</div>
+    <div>@Html.ActionLink("退出", "LogOff")</div>
+}else{
+    <div>
+        @Html.ActionLink("登录", "LogOn")
+    </div>
+}
